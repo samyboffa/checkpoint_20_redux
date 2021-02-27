@@ -1,0 +1,81 @@
+.itemTask {
+    width: 80%;
+    border: none;
+    margin: 1% auto;
+    border-radius: 5px;
+    color: snow;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    box-shadow: 5px 5px 20px rgb(121, 107, 83);
+}
+.itemTaskDone {
+    background-color: #38cdf5;
+    border: 1px solid #3a5a64;
+}
+.itemTaskNotDone {
+    background-color: #fd707e;
+    border: 1px solid #3a5a64;
+}
+
+.up {
+    display: flex;
+    align-items: center;
+    gap: 2%;
+    width: 100%;
+}
+.order {
+    font-size: 4em;
+    margin: 0% 1%;
+}
+.todo {
+    text-align: center;
+}
+.down {
+    width: 100%;
+    height: 30%;
+}
+.down h3 {
+    margin: 0.5%;
+}
+.downDone {
+    background-color: #2eb8df;
+}
+.downNotDone {
+    background-color: #f35e6d;
+}
+.svg {
+    fill: white;
+}
+.svg:hover {
+    cursor: pointer;
+}
+.no:hover {
+    fill: #7a0012;
+}
+.ok:hover {
+    fill: #008001;
+}
+.trash:hover {
+    fill: #79121f;
+}
+.edit:hover {
+    fill: #1b201b;
+}
+.logos {
+    display: flex;
+    justify-content: space-around;
+    width: 50%;
+    align-items: center;
+}
+.inputEdit {
+    background: transparent;
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: 1px white solid;
+    outline: none;
+    color: white;
+    font-size: 1em;
+}
