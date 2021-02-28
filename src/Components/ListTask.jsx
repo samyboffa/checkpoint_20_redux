@@ -12,7 +12,7 @@ export const ListTask = () => {
                 allTasks.map((task, index) => (
                     <Task
                         key={index}
-                        order={task.id}
+                        order={index}
                         todo={task.todo}
                         isDone={task.isDone}
                     />

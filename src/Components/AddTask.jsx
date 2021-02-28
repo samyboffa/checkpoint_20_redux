@@ -1,5 +1,5 @@
 import React from "react";
-import { add } from "../actions/add";
+import { add, filterDone, filterNotDone } from "../actions/actions";
 import { useDispatch } from "react-redux";
 import "./AddTask.css";
 
@@ -10,7 +10,7 @@ export const AddTask = () => {
         todo: "",
         isDone: false,
     };
-    let i = 1;
+    let i = 1; //counter
 
     return (
         <div className="addTask">
@@ -46,6 +46,22 @@ export const AddTask = () => {
                 <br />
                 <input type="submit" className="submit" value="submit" />
             </form>
+            <div className="filter">
+                {" "}
+                <button
+                    className="filterbtn"
+                    onClick={() => dispatch(filterDone())}
+                >
+                    Done First
+                </button>
+                <button
+                    className="filterbtn"
+                    onClick={() => dispatch(filterNotDone())}
+                >
+                    {" "}
+                    Not Done First
+                </button>{" "}
+            </div>
         </div>
     );
 };

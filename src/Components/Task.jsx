@@ -1,17 +1,14 @@
 import React from "react";
 import "./Task.css";
 import { useState } from "react";
-import { remove } from "../actions/add";
+import { markDone, markNotDone, editTask } from "../actions/actions";
 import { useDispatch } from "react-redux";
+import dateTime from "./time";
 
 export const Task = ({ order, todo, isDone }) => {
     const dispatch = useDispatch();
     let doneOrNot = isDone ? "Done" : "NotDone";
-    let trash = (
-        <svg className="svg trash" width="35" height="35" viewBox="0 0 24 24">
-            <path d="M3 6l3 18h12l3-18h-18zm19-4v2h-20v-2h5.711c.9 0 1.631-1.099 1.631-2h5.316c0 .901.73 2 1.631 2h5.711z" />
-        </svg>
-    );
+
     let edit = (
         <svg className="svg edit" width="37" height="37" viewBox="0 0 24 24">
             <path d="M14.078 4.232l-12.64 12.639-1.438 7.129 7.127-1.438 12.641-12.64-5.69-5.69zm-10.369 14.893l-.85-.85 11.141-11.125.849.849-11.14 11.126zm2.008 2.008l-.85-.85 11.141-11.125.85.85-11.141 11.125zm18.283-15.444l-2.816 2.818-5.691-5.691 2.816-2.816 5.691 5.689z" />{" "}
@@ -27,7 +24,7 @@ export const Task = ({ order, todo, isDone }) => {
             <path d="M20.197 2.837l.867.867-8.21 8.291 8.308 8.202-.866.867-8.292-8.21-8.23 8.311-.84-.84 8.213-8.32-8.312-8.231.84-.84 8.319 8.212 8.203-8.309zm-.009-2.837l-8.212 8.318-8.31-8.204-3.666 3.667 8.321 8.24-8.207 8.313 3.667 3.666 8.237-8.318 8.285 8.204 3.697-3.698-8.315-8.209 8.201-8.282-3.698-3.697z" />
         </svg>
     );
-    const [displayed, setdisplayed] = useState("none");
+    const [displayed, setdisplayed] = useState("none"); //for displaying red for notdone and bue for done
     const switchDisplay = () => {
         displayed === "none" ? setdisplayed("block") : setdisplayed("none");
     };
@@ -38,22 +35,36 @@ export const Task = ({ order, todo, isDone }) => {
                 <h1 className={`todo${doneOrNot} todo`}>{todo}</h1>
                 <div className="logos">
                     <span onClick={() => switchDisplay()}>{edit}</span>
-                    <form style={{ display: displayed }}>
+                    <form
+                        style={{ display: displayed }}
+                        onSubmit={(e) => (
+                            e.preventDefault(),
+                            dispatch(editTask(order, e.target.newTask.value))
+                        )}
+                    >
                         <input
+                            onChange={(e) => (
+                                e.preventDefault,
+                                dispatch(editTask(order, e.target.value))
+                            )}
+                            onBlur={(e) => (
+                                switchDisplay(), (e.target.value = "")
+                            )}
                             name="newTask"
                             className="inputEdit"
-                            placeholder="Modify this task"
+                            placeholder="Press enter to submit"
                             type="text"
                         />
                     </form>
-                    <span>{ok}</span>
-                    <span>{no}</span>
-                    <span>{trash}</span>
+                    <span onClick={() => dispatch(markDone(order))}>{ok}</span>
+                    <span onClick={() => dispatch(markNotDone(order))}>
+                        {no}
+                    </span>
                 </div>
             </div>
             <div className={`down${doneOrNot} down`}>
                 {" "}
-                {isDone ? <h3> Done </h3> : <h3> Not Done</h3>}
+                {isDone ? <h3> Done in {dateTime} </h3> : <h3> Not Done</h3>}
             </div>
         </div>
     );

@@ -35,3 +35,22 @@
     background-color: #e79110;
     cursor: pointer;
 }
+.filter {
+    display: flex;
+    gap: 2%;
+    justify-content: center;
+}
+.filterbtn {
+    background-color: #e2a448;
+    cursor: pointer;
+    box-shadow: 5px 5px 10px rgb(66, 62, 54);
+    outline: none;
+    border: 1px solid #3a5a64;
+    border-radius: 5px;
+}
+.filterbtn:hover {
+    background-color: #e79110;
+}
+.filterbtn:focus-within {
+    background-color: #cc800f;
+}
